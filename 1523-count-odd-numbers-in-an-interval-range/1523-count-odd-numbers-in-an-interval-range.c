@@ -10,12 +10,4 @@ int countOdds(int low, int high){
     else{
         return (high-low)/2;
     }
-  
-    // int cnt = 0;
-    // for(int i = low; i<=high; i++){
-    //     if(i%2 == 1){
-    //         cnt++;
-    //     }
-    // }
-    // return cnt;
 }
