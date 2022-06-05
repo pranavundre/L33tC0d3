@@ -12,9 +12,8 @@ double average(int* salary, int salarySize){
     }
     int i=2;
     while(i<salarySize){
-        if(salary[i]>min && salary[i]<max){
-            sum+=salary[i];
-        }else if(salary[i]<min){
+        if(salary[i]>min && salary[i]<max)  sum+=salary[i];
+        else if(salary[i]<min){
             sum+=min;
             min = salary[i];
         }else if(salary[i]>max){
