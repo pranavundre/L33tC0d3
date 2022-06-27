@@ -1,15 +1,12 @@
 class Solution {
 public:
     int minPartitions(string n) {
-        int x;
-        set<int> st;
         string str;
+        int ret = 0;
         for(int i = 0; i < n.length(); i++){
             str = n.at(i);
-            x = stoi(str);
-            st.insert(x);
+            ret = max(stoi(str), ret);
         }
-        auto it = st.rbegin();
-        return *it;
+        return ret;
     }
 };
