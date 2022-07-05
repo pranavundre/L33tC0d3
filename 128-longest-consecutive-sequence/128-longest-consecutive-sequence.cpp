@@ -7,20 +7,20 @@ public:
         
         sort(nums.begin(), nums.end());
         
-        int f, l, maxl = 1, s = 1;
+        int maxl = 1, s = 1;
         bool c = false;
         
         for(int i = 1; i < nums.size(); i++){
             if(nums[i]-nums[i-1] == 1){
-                if(c){
+                if(c)
                     s++;
-                }else{
+                else{
                     c = true;
                     s++;
                 }
-            }else if(nums[i]-nums[i-1] == 0){
+            }else if(nums[i]-nums[i-1] == 0)
                 c = true;
-            }else{
+            else{
                 s = 1;
                 c = false;
             }
