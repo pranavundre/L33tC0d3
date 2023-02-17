@@ -12,18 +12,12 @@ public:
     vector<int> minPartition(int N) {
         vector<int> coins = {2000, 500, 200, 100, 50, 20, 10, 5, 2, 1};
         vector<int> ret;
-        int i = 0;
-        int c = 0;
-        while(i < coins.size()){
+        int i = 0, c = 0;
+        while(i < 10){
             c = N/coins[i];
-            if(c==0){
-                i++;
-                continue;
-            }
-            N -= (N/coins[i])*(coins[i]);
-            // cout<<c<<" "<<coins[i]<<" "<<N<<endl;
-            for(int j = 0; j < c; j++){
-                ret.emplace_back(coins[i]);
+            if(c){
+                N -= c*(coins[i]);
+                for(int j = 0; j < c; j++) ret.emplace_back(coins[i]);
             }
             i++;
         }
