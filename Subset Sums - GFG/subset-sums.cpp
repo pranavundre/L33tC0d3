@@ -6,27 +6,44 @@ using namespace std;
 class Solution
 {
 public:
-    void sums(int ind, vector<int> &ds, vector<int> &ret, vector<int> &arr, int N){
-        if(ind == N){
-            int sum = 0;
-            for(auto it : ds) sum = sum + it;
-            ret.push_back(sum);
+
+    void sums(vector<int>& arr, int n, vector<int>& ds, int sum){
+        if(n == arr.size()){
+            ds.push_back(sum);
             return;
         }
-        ds.push_back(arr[ind]);
-        sums(ind+1, ds, ret,  arr, N);
-        
-        ds.pop_back();
-        sums(ind+1, ds, ret, arr, N);
+        sums(arr, n+1, ds, sum);
+        sum += arr[n];
+        sums(arr, n+1, ds, sum);
     }
-    
+
     vector<int> subsetSums(vector<int> arr, int N){
         vector<int> ds;
-        vector<int> ret;
-        sums(0, ds, ret, arr, N);
-        sort(ret.begin(), ret.end());
-        return ret;
+        sums(arr, 0, ds, 0);
+        return ds;
     }
+
+    // void sums(int ind, vector<int> &ds, vector<int> &ret, vector<int> &arr, int N){
+    //     if(ind == N){
+    //         int sum = 0;
+    //         for(auto it : ds) sum = sum + it;
+    //         ret.push_back(sum);
+    //         return;
+    //     }
+    //     ds.push_back(arr[ind]);
+    //     sums(ind+1, ds, ret,  arr, N);
+        
+    //     ds.pop_back();
+    //     sums(ind+1, ds, ret, arr, N);
+    // }
+    
+    // vector<int> subsetSums(vector<int> arr, int N){
+    //     vector<int> ds;
+    //     vector<int> ret;
+    //     sums(0, ds, ret, arr, N);
+    //     sort(ret.begin(), ret.end());
+    //     return ret;
+    // }
 };
 
 //{ Driver Code Starts.
