@@ -10,44 +10,21 @@ using namespace std;
 
 class Solution{
     public:
-    
     void paths(vector<vector<int>> m, vector<string>& ds, int dr[], int dc[], string temp, int r, int c){
         if(r == m.size()-1 && c == m.size()-1){
             ds.push_back(temp);
             return;
         }
-        
         string dir = "DLRU";
         for(int i = 0; i < 4; i++){
             int nr = r + dr[i];
             int nc = c + dc[i];
-            if(nr>=0 && nc>=0 && nr<m.size() && nc<m.size() && m[nr][nc] == 1 && temp[temp.size()-1] != dir[3-i]){
-                m[nr][nc] = -1;
+            if(nr>=0 && nc>=0 && nr<m.size() && nc<m.size() && m[nr][nc] == 1){
+                m[r][c] = -1;
                 paths(m, ds, dr, dc, temp + dir[i], nr, nc);
                 m[nr][nc] = 1;
             }
         }
-        
-        // if(r != m.size()-1 && m[r+1][c] == 1 && temp[temp.size()-1] != 'U'){
-        //     m[r+1][c] = -1;
-        //     paths(m, ds, temp + "D", r+1, c);
-        //     m[r+1][c] = 1;
-        // }
-        // if(c!=0 && m[r][c-1] == 1  && temp[temp.size()-1] != 'R'){
-        //     m[r][c-1] = -1;
-        //     paths(m, ds, temp + "L", r, c-1);
-        //     m[r][c-1] = 1;
-        // }
-        // if(c != m.size()-1 && m[r][c+1] == 1 && temp[temp.size()-1] != 'L'){
-        //     m[r][c+1] = -1;
-        //     paths(m, ds, temp + "R", r, c+1);
-        //     m[r][c+1] = 1;
-        // }
-        // if(r!=0 && m[r-1][c] == 1 && temp[temp.size()-1] != 'D'){
-        //     m[r-1][c] = -1;
-        //     paths(m, ds, temp + "U", r-1, c);
-        //     m[r-1][c] = 1;
-        // }
     }
     
     vector<string> findPath(vector<vector<int>> &m, int n) {
@@ -61,12 +38,6 @@ class Solution{
         return ds;
     }
 };
-
-// 0 1 1 1
-// 1 1 1 0 
-// 1 0 1 1 
-// 0 0 1 1
-
 
     
 
