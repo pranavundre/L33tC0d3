@@ -22,7 +22,7 @@ class Solution{
             if(nr>=0 && nc>=0 && nr<m.size() && nc<m.size() && m[nr][nc] == 1){
                 m[r][c] = -1;
                 paths(m, ds, dr, dc, temp + dir[i], nr, nc);
-                m[nr][nc] = 1;
+                m[r][c] = 1;
             }
         }
     }
