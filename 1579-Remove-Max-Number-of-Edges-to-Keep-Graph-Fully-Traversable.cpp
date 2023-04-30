@@ -3,6 +3,7 @@ public:
     int find(vector<int> &ds, int i) {
         return ds[i] < 0 ? i : ds[i] = find(ds, ds[i]);
     }
+    
     int maxNumEdgesToRemove(int n, vector<vector<int>>& edges) {
         vector<int> ds_both(n + 1, -1);
         int used = 0;
