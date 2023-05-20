@@ -11,10 +11,9 @@ class Solution {
             int temp = q.front(), count = 0;
             q.pop();
             for(int i : adj[temp]){
-                if(vis[i] > 0){
+                if(vis[i]++ > 0){
                     count++;
                 }else{
-                    vis[i] = 1;
                     q.emplace(i);
                 }
             }
@@ -28,8 +27,7 @@ class Solution {
         queue<int> q;
         vector<int> vis(V, 0);
         for(int i = 0; i < V; i++){
-            if(vis[i] == 0){
-                vis[i] = 1;
+            if(vis[i]++ == 0){
                 bool loop = false;
                 q.emplace(i);
                 checkBFS(q, vis, adj, V, loop);
