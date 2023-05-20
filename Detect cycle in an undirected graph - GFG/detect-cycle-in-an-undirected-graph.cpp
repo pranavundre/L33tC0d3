@@ -3,40 +3,34 @@
 using namespace std;
 
 // } Driver Code Ends
+
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
     void checkBFS(queue<int>& q, vector<int>& vis, vector<int> adj[], int& V, bool& loop){
         while(!q.empty()){
-            int temp = q.front(), count = 0;
+            int temp = q.front(), visCount = 0;
             q.pop();
-            for(int i : adj[temp]){
-                if(vis[i]++ > 0){
-                    count++;
-                }else{
-                    q.emplace(i);
-                }
-            }
-            if(count >= 2){
-                loop = true;
-                return;
-            }
+            for(int i : adj[temp])
+                if(vis[i]++ > 0) visCount++;
+                else q.emplace(i);
+            if(visCount >= 2) loop = true;
         }
     }
     bool isCycle(int V, vector<int> adj[]) {
         queue<int> q;
         vector<int> vis(V, 0);
-        for(int i = 0; i < V; i++){
+        for(int i = 0; i < V; i++)
             if(vis[i]++ == 0){
                 bool loop = false;
                 q.emplace(i);
                 checkBFS(q, vis, adj, V, loop);
                 if(loop) return true;
             }
-        }
         return false;
     }
 };
+
 
 //{ Driver Code Starts.
 int main() {
