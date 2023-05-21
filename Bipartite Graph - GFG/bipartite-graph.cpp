@@ -24,7 +24,6 @@ public:
     }
 	bool isBipartite(int V, vector<int>adj[]){
         vector<int> color(V, -1);
-        // color[0] = 0;
         for(int i = 0; i < V; i++) if(color[i] == -1 && !check(adj, color, i)) return false;
         return true;
 	}
