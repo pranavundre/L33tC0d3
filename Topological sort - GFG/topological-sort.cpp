@@ -3,26 +3,27 @@
 using namespace std;
 
 // } Driver Code Ends
+
 class Solution{
 	public:
-	//Function to return list containing vertices in Topological order.
-	void checkDFS(vector<int> adj[], vector<int> &vis, stack<int> &stk, int index){
-	    vis[index] = 1;
-	    for(int i : adj[index]) if(vis[i] == 0) checkDFS(adj, vis, stk, i);
-	    stk.push(index);
-	}
 	vector<int> topoSort(int V, vector<int> adj[]) {
-	    vector<int> vis(V, 0), res;
-	    stack<int> stk;
-	    for(int i = 0; i < V; i++) if(vis[i] == 0) checkDFS(adj, vis, stk, i);
-	    while(!stk.empty()){
-	        res.emplace_back(stk.top());
-	       // cout<<stk.top()<<" ";
-	        stk.pop();
+	    vector<int> indegree(V, 0), res;
+        queue<int> q;
+        for(int i = 0; i < V; i++) for(int it : adj[i]) indegree[it]++;
+        for(int i = 0; i < V; i++) if(indegree[i] == 0) q.push(i);
+	    while(!q.empty()){
+	        int temp = q.front();
+	        q.pop();
+	        res.emplace_back(temp);
+	        for(int i : adj[temp]){
+	            indegree[i]--;
+	            if(indegree[i] == 0) q.push(i);
+	        }
 	    }
 	    return res;
 	}
 };
+
 
 //{ Driver Code Starts.
 
