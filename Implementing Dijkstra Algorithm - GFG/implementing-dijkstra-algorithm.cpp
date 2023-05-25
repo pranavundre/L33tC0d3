@@ -16,7 +16,7 @@ class Solution{
             auto p = pq.top();
             int d = p.first, node = p.second;
             pq.pop();
-            if(dist[node] < d) continue;
+            // if(dist[node] < d) continue;
             for(auto vec : adj[node]){
                 if(vec[1] + d < dist[vec[0]]){
                     dist[vec[0]] = vec[1] + d;
